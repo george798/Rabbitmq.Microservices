@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Rabbitmq.Microservices.Infra.IOC\Rabbitmq.Microservices.Infra.IOC.csproj" />
   </ItemGroup>
 
 </Project>
