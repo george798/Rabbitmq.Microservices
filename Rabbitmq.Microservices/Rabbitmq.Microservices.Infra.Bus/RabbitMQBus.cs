@@ -120,7 +120,7 @@ namespace Rabbitmq.Microservices.Infra.Bus
                     var @event = JsonConvert.DeserializeObject(message,eventType);
                     var concreteType = typeof(IEventHandler<>).MakeGenericType(eventType);
 
-                    await (Task)concreteType.GetMethod(nameof("Handle")).Invoke(handler, new object[] { @event }); 
+                    await (Task)concreteType.GetMethod("Handle").Invoke(handler, new object[] { @event }); 
                 }
             }
         }
