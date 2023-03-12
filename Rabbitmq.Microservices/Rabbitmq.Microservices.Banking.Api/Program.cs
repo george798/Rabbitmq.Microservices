@@ -1,4 +1,7 @@
+using Microsoft.Extensions.DependencyInjection;
+using Rabbitmq.Microservices.Banking.Data.Options;
 using Rabbitmq.Microservices.Infra.IOC;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +11,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.Configure<MongoOptions>(builder.Configuration.GetSection("MongoOptions"));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 DependencyContainer.RegisterServices(builder.Services);
 
 var app = builder.Build();

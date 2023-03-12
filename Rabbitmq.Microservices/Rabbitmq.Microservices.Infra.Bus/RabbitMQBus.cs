@@ -29,7 +29,11 @@ namespace Rabbitmq.Microservices.Infra.Bus
 
         public void Publish<T>(T @event) where T : Event
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+     //       var factory = new ConnectionFactory() { HostName = "172.17.0.2" };
+
+            var factory = new ConnectionFactory() { HostName = "127.0.0.1", Port = 5672 };
+            factory.UserName = "guest";
+            factory.Password = "guest";
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
